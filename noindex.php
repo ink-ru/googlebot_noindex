@@ -53,7 +53,6 @@ function GoogleBotDirective(&$content)
             break;
         }
         
-        $buffered == false;
     }
     
     return false;
