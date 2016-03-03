@@ -9,7 +9,8 @@
 // --- for BITRIX CMS only! ---
 // AddEventHandler("main", "OnEndBufferContent", "GoogleBotDirective");
 // --- for other CMS ---
-// GoogleBotDirective($sContent);
+// GoogleBotDirective($sContent); // if you have content in variable
+// GoogleBotDirective(false); // if you want to output tag right there
 
 function GoogleBotDirective(&$content)
 {
