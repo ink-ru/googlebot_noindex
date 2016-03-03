@@ -9,7 +9,7 @@
 // --- for BITRIX CMS only! ---
 // AddEventHandler("main", "OnEndBufferContent", "GoogleBotDirective");
 // --- for other CMS ---
-// GoogleBotDirective(false);
+// GoogleBotDirective($sContent);
 
 function GoogleBotDirective(&$content)
 {
