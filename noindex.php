@@ -26,27 +26,27 @@ function GoogleBotDirective(&$content)
 
     foreach($sR as $sRule) 
     {
-        if(!preg_match('#Disallow.*#', $sRule)) continue; // нам нужны только запрещающие правила
+        if(!preg_match('~Disallow.*~', $sRule)) continue; // нам нужны только запрещающие правила
         
         if($content !== false)
         {
-          if(!preg_match('#<meta[^>]+name\s*=\s*["|\']googlebot["|\'][^>]+noindex[^>]+>#siU', $content)) $buffered = true;
+          if(!preg_match('~<meta[^>]+name\s*=\s*["|\']googlebot["|\'][^>]+noindex[^>]+>~siU', $content)) $buffered = true;
             else continue;
         }
 
         $sRepFrom = array( '*',  '?' );
         $sRepTo =   array( '.*', '\?');
 
-        $sRule = preg_replace('#^\s*Disallow\s*:\s*#i', '', $sRule);
+        $sRule = preg_replace('~^\s*Disallow\s*:\s*~i', '', $sRule);
         $sRule = trim(str_replace($sRepFrom,$sRepTo,$sRule));
 
         if(!strpos($sRule,'$')) // на всякий случай
         {
-          $sRule = preg_replace('#([^\*])$#i', "$1.*", $sRule);
+          $sRule = preg_replace('~([^\*])$~i', "$1.*", $sRule);
         }
         
         
-        if(preg_match('#'.$sRule.'#i', $_SERVER['REQUEST_URI']))
+        if(preg_match('~'.$sRule.'~i', $_SERVER['REQUEST_URI']))
         {
             if($buffered) $content = str_ireplace('</title>', '</title>'.$noindex, $content);
               else print $noindex;
