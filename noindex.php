@@ -1,14 +1,15 @@
 <?php
-//======================================================//
-//            Закрываем индексацию страниц              //
-//======================================================//
+
+//============= Закрываем индексацию страниц ===========//
     
 //======================================================//
-//              call or register function               //
+//                 for BITRIX CMS only!                 //
 //======================================================//
-// --- for BITRIX CMS only! ---
-// AddEventHandler("main", "OnEndBufferContent", "GoogleBotDirective");
-// --- for other CMS ---
+// AddEventHandler("main", "OnEndBufferContent", "GoogleBotDirective"); // put it in init.php
+
+//======================================================//
+//                    for other CMS                     //
+//======================================================//
 // GoogleBotDirective($sContent); // if you have content in variable
 // GoogleBotDirective(false); // if you want to output tag right there
 
