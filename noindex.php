@@ -18,10 +18,12 @@ function GoogleBotDirective(&$content)
     $path = $_SERVER["DOCUMENT_ROOT"].'robots.txt';
     $noindex = '<meta name="googlebot" content="noindex">';
     $buffered = false;
+    $skip = array('.*', '/', '/.*'); // Чтобы не вычистить все
     
     if(@file_exists($path)) $sR = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         else $sR = file('http://'.$_SERVER['SERVER_NAME'].'/robots.txt');
     $sR = array_unique(array_filter($sR));
+    if(count($sR) < 1) return true;
 
     foreach($sR as $sRule) 
     {
@@ -36,6 +38,8 @@ function GoogleBotDirective(&$content)
 
         $sRule = preg_replace('~^\s*Disallow\s*:\s*~i', '', $sRule);
         $sRule = trim(str_replace(array( '*',  '?' ), array( '.*', '\?'), $sRule));
+        
+        if(in_array($sRule), $skip) continue;
         
         if(preg_match('~'.$sRule.'~i', $_SERVER['REQUEST_URI']))
         {
