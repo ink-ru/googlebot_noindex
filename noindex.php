@@ -42,9 +42,8 @@ function GoogleBotDirective(&$content)
         $sRule = preg_replace('~^\s*Disallow\s*:\s*~i', '', $sRule);
         $sRule = trim(str_replace($sRepFrom,$sRepTo,$sRule));
 
-        if(!strpos($sRule,'$')) // на всякий случай
-        {
-          $sRule = preg_replace('~([^\*])$~i', "$1.*", $sRule);
+        // Жадность
+        // if(!strpos($sRule,'$')) $sRule = preg_replace('~([^\*])$~i', "$1.*", $sRule);
         }
         
         
