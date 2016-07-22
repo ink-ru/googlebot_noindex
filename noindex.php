@@ -37,7 +37,7 @@ function GoogleBotDirective(&$content)
         }
 
         $sRule = preg_replace('~^\s*Disallow\s*:\s*~i', '', $sRule);
-        $sRule = trim(str_replace(array( '*',  '?' ), array( '.*', '\?'), $sRule));
+        $sRule = trim(str_replace(array( '*',  '?', '.' ), array( '.*', '\?', '\.'), $sRule));
         
         if(in_array($sRule), $skip) continue; // Чтобы не вычистить все
         
