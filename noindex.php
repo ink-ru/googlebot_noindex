@@ -27,7 +27,7 @@ function GoogleBotDirective(&$content)
 
     foreach($sR as $sRule) 
     {
-        if(strpos($sRule, '#')) $sRule = preg_replace('~^([^#]*)#~i', "$1", $sRule); // comment removing
+        if(strpos($sRule, '#')) $sRule = preg_replace('~^([^#]*).*#~i', "$1", $sRule); // comment removing
         if(!preg_match('~Disallow.*~', $sRule)) continue; // нам нужны только запрещающие правила
         
         if($content !== false && strlen($content) > 100)
