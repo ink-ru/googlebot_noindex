@@ -39,7 +39,7 @@ function GoogleBotDirective(&$content)
         $sRule = preg_replace('~^\s*Disallow\s*:\s*~i', '', $sRule);
         $sRule = trim(str_replace(array( '*',  '?', '.' ), array( '.*', '\?', '\.'), $sRule));
         
-        if(in_array($sRule), $skip) continue; // Чтобы не вычистить все
+        if(in_array($sRule, $skip)) continue; // Чтобы не вычистить все
         
         if(preg_match('~'.$sRule.'~i', $_SERVER['REQUEST_URI']))
         {
